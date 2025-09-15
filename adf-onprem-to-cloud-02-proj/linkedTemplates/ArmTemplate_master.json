@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://kv-adventureworks-proj02.vault.azure.net/"
 		},
+		"adlsgen2ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://onpremtocloudadls.dfs.core.windows.net/"
+		},
 		"onpremsqlserverls_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "MACHINE\\SQLEXPRESS"
@@ -26,10 +30,6 @@
 		"onpremsqlserverls_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "nk"
-		},
-		"adlsgen2ls_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://onpremtocloudadls.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",

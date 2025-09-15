@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://kv-adventureworks-proj02.vault.azure.net/"
 		},
+		"adlsgen2ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://onpremtocloudadls.dfs.core.windows.net/"
+		},
 		"onpremsqlserverls_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "MACHINE\\SQLEXPRESS"
@@ -26,10 +30,6 @@
 		"onpremsqlserverls_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "nk"
-		},
-		"adlsgen2ls_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://onpremtocloudadls.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -98,7 +98,8 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2025-09-15T17:39:06Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/address')]",
@@ -167,6 +168,31 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/address_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adlsgen2ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "bronze",
+						"fileSystem": "adventureworksdwfs"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adlsgen2ls')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -175,6 +201,23 @@
 				"type": "AzureKeyVault",
 				"typeProperties": {
 					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adlsgen2ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('adlsgen2ls_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('adlsgen2ls_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -222,48 +265,6 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/adlsgen2ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('adlsgen2ls_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('adlsgen2ls_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/address_Parquet')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adlsgen2ls",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "bronze",
-						"fileSystem": "adventureworksdwfs"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adlsgen2ls')]"
-			]
 		}
 	]
 }

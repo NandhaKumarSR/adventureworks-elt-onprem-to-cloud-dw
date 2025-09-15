@@ -11,6 +11,9 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://kv-adventureworks-proj02.vault.azure.net/"
 		},
+		"adlsgen2ls_properties_typeProperties_url": {
+			"value": "https://onpremtocloudadls.dfs.core.windows.net/"
+		},
 		"onpremsqlserverls_properties_typeProperties_server": {
 			"value": "MACHINE\\SQLEXPRESS"
 		},
@@ -19,9 +22,6 @@
 		},
 		"onpremsqlserverls_properties_typeProperties_userName": {
 			"value": "nk"
-		},
-		"adlsgen2ls_properties_typeProperties_url": {
-			"value": "https://onpremtocloudadls.dfs.core.windows.net/"
 		}
 	}
 }
