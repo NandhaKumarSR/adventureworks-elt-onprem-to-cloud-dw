@@ -1,0 +1,20 @@
+{
+	"name": "address_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsgen2ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "bronze",
+				"fileSystem": "adventureworksdwfs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
