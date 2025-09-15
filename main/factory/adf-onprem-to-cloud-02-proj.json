@@ -1,0 +1,9 @@
+{
+	"name": "adf-onprem-to-cloud-02-proj",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e3640bc8-401d-49c2-bb52-569136a7d96f",
+		"tenantId": "87e32139-4aa5-46f4-b2bb-fb23ad0ff3ba"
+	}
+}
