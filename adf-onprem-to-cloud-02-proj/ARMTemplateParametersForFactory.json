@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-onprem-to-cloud-02-proj"
+		},
+		"adlsgen2ls_accountKey": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kv-adventureworks-proj02.vault.azure.net/"
+		},
+		"onpremsqlserverls_properties_typeProperties_server": {
+			"value": "MACHINE\\SQLEXPRESS"
+		},
+		"onpremsqlserverls_properties_typeProperties_database": {
+			"value": "AdventureWorksLT2017"
+		},
+		"onpremsqlserverls_properties_typeProperties_userName": {
+			"value": "nk"
+		},
+		"adlsgen2ls_properties_typeProperties_url": {
+			"value": "https://onpremtocloudadls.dfs.core.windows.net/"
+		}
+	}
+}
