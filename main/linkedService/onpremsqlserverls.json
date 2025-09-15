@@ -1,0 +1,27 @@
+{
+	"name": "onpremsqlserverls",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "MACHINE\\SQLEXPRESS",
+			"database": "AdventureWorksLT2017",
+			"encrypt": "True",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "nk",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "password"
+			}
+		},
+		"connectVia": {
+			"referenceName": "SHIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
