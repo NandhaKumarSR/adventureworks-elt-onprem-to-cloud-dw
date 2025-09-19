@@ -23,6 +23,9 @@
 		"onpremsqlserverls_properties_typeProperties_userName": {
 			"value": "nk"
 		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0917-161402-oisqu9im"
+		},
 		"containerUri": {
 			"value": ""
 		},
