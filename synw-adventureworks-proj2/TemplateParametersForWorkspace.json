@@ -8,6 +8,12 @@
 		"synw-adventureworks-proj2-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-adventureworks-proj2.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
+		"serverlessSQLdb_properties_typeProperties_server": {
+			"value": "synw-adventureworks-proj2-ondemand.sql.azuresynapse.net"
+		},
+		"serverlessSQLdb_properties_typeProperties_database": {
+			"value": "gold_db"
+		},
 		"synw-adventureworks-proj2-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://onpremtocloudadls.dfs.core.windows.net"
 		}
