@@ -1,0 +1,17 @@
+{
+	"name": "create_view_address",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW address\n\nAS\n\nSELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://onpremtocloudadls.dfs.core.windows.net/adventureworksdwfs/gold/Address/',\n        FORMAT = 'DELTA'\n    ) AS [result]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
