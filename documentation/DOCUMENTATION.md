@@ -2,7 +2,7 @@
 
 ## 🔧 Architecture Overview
 
-![project Architecture](./documentation/project-architecture.png)
+![project Architecture](./project-architecture.png)
 
 This project follows a medallion architecture pattern:
 
