@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_proj2_la_name": {
+            "defaultValue": "proj2-la",
+            "type": "String"
+        },
+        "connections_powerbi_externalid": {
+            "defaultValue": "/subscriptions/f3e33c16-35b6-438d-b2df-b1cc1cf71e15/resourceGroups/rg-onprem-to-cloud-warehouse/providers/Microsoft.Web/connections/powerbi",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_proj2_la_name')]",
+            "location": "centralindia",
+            "tags": {
+                "course": "Youtube",
+                "instructor": "Mr K Talks",
+                "project": "2",
+                "month-year": "sep-2025"
+            },
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_an_HTTP_request_is_received": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "description": "Pipeline Trigger"
+                        }
+                    },
+                    "actions": {
+                        "Refresh_a_dataset": {
+                            "runAfter": {},
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['powerbi']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/v1.0/myorg/groups/@{encodeURIComponent('myworkspace')}/datasets/@{encodeURIComponent('6b887c41-7770-4ce6-8e38-c89f56f823d0')}/refreshes",
+                                "queries": {
+                                    "pbi_source": "powerAutomate"
+                                }
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "powerbi": {
+                                "id": "/subscriptions/f3e33c16-35b6-438d-b2df-b1cc1cf71e15/providers/Microsoft.Web/locations/centralindia/managedApis/powerbi",
+                                "connectionId": "[parameters('connections_powerbi_externalid')]",
+                                "connectionName": "powerbi"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
