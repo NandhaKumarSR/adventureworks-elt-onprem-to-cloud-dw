@@ -212,6 +212,32 @@
 							"referenceName": "AzureDatabricks1",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Refresh Power BI Dataset",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Silver to Gold",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://prod-29.centralindia.logic.azure.com:443/workflows/00b956fa15a84563bd83694b437b605f/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=XsF3-tjm-87f924DPh6UjjKVt3zcKuPR_0ygEAGGdFI",
+							"body": {}
+						}
 					}
 				],
 				"policy": {
@@ -583,17 +609,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SHIR')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "used to connect SQL Server",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/scheduled_trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -631,6 +646,17 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/ingest_all_tables')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SHIR')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "used to connect SQL Server",
+				"typeProperties": {}
+			},
+			"dependsOn": []
 		}
 	]
 }
