@@ -1,0 +1,17 @@
+{
+	"name": "dim_address_script",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW [reporting].[dim_address]\n\tAS \n\tSELECT \n\ta.Address_ID, a.Address_Line1, a.Address_Line2, a.City, a.State_Province, a.Country_Region, a.Postal_Code, a.Modified_Date,\n\tca.Customer_ID, ca.Address_Type\n\tFROM\n\t[dbo].[address] a \n\tleft join CustomerAddress ca on ca.Address_ID = a.Address_ID\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

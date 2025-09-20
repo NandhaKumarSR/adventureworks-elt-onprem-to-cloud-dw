@@ -1,0 +1,17 @@
+{
+	"name": "dim_customers_script",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW [reporting].[dim_customers]\n\tAS \n\tSELECT \n\tCustomer_ID, Title, First_Name, Middle_Name, Last_Name, Suffix, Company_Name, Sales_Person, Email_Address, Phone, Modified_Date\n\tFROM\n\t[dbo].[Customer] c\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

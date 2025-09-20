@@ -1,0 +1,17 @@
+{
+	"name": "dim_products_script",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW [reporting].[dim_products]\n\tAS \n\tSELECT \n\tp.Product_ID, p.Name, p.Product_Number, p.Color, p.Standard_Cost, p.List_Price, p.Size, p.Weight, p.Sell_Start_Date, p.Sell_End_Date,\n\tp.Discontinued_Date, p.Modified_Date, pc.Name AS [Product_Category], pm.Name AS [Product_Model]\n\tFROM\n\t[dbo].[product] p \n\tleft join [dbo].[ProductCategory] pc on pc.Product_Category_ID = p.Product_Category_ID\n\tleft join [dbo].[ProductModel] pm on pm.Product_Model_ID = p.Product_Model_ID",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

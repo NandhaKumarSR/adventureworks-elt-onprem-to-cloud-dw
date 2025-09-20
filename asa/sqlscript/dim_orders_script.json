@@ -1,0 +1,17 @@
+{
+	"name": "dim_orders_script",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW [reporting].[dim_orders]\n\tAS \n\tSELECT \n\tsh.Sales_Order_ID, sh.Order_Date, sh.Due_Date, sh.Sales_Order_Number,sh.Ship_date, sh.Customer_ID, sh.Ship_to_Address_ID,\n\tsh.Bill_To_Address_ID, sh.Purchase_Order_Number, sh.Account_Number,sh.Ship_Method, sh.Tax_Amt, sh.Freight, sh.Sub_Total, sh.Total_Due\n\tfrom\n\t[dbo].[salesOrderHeader] sh\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "gold_db",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
